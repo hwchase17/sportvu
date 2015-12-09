@@ -1,3 +1,4 @@
 .ipynb_checkpoints
 tempdata
 merged_shots/
+parsed_df.json
