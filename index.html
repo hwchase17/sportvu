@@ -1,25 +1,34 @@
 <!DOCTYPE html>
-<html lang="en-us">
+<html>
   <head>
-    <meta charset="UTF-8">
-    <title>SportVu Shot Analysis by hwchase17</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" href="stylesheets/normalize.css" media="screen">
-    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link href='https://fonts.googleapis.com/css?family=Architects+Daughter' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
     <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
-  </head>
-  <body>
-    <section class="page-header">
-      <h1 class="project-name">SportVu Shot Analysis</h1>
-      <h2 class="project-tagline">Raymond Cen, Harrison Chase, Carlos Pena-Lobel, Daniel Silbawasser</h2>
-      <a href="https://github.com/hwchase17/sportvu" class="btn">View on GitHub</a>
-      <a href="https://github.com/hwchase17/sportvu/zipball/master" class="btn">Download .zip</a>
-      <a href="https://github.com/hwchase17/sportvu/tarball/master" class="btn">Download .tar.gz</a>
-    </section>
+    <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print">
 
-    <section class="main-content">
-      <h3>
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <title>SportVu Shot Analysis by hwchase17</title>
+  </head>
+
+  <body>
+    <header>
+      <div class="inner">
+        <h1>SportVu Shot Analysis</h1>
+        <h2>Raymond Cen, Harrison Chase, Carlos Pena-Lobel, Daniel Silbawasser</h2>
+        <a href="https://github.com/hwchase17/sportvu" class="button"><small>View project on</small> GitHub</a>
+      </div>
+    </header>
+
+    <div id="content-wrapper">
+      <div class="inner clearfix">
+        <section id="main-content">
+          <h3>
 <a id="motivation" class="anchor" href="#motivation" aria-hidden="true"><span class="octicon octicon-link"></span></a>Motivation</h3>
 
 <p>Prior to the 2013-2014 NBA season, SportVu tracking cameras were installed in all 30 NBA arenas. These six cameras would use cutting edge technology to track the exact location of all players, ref and the ball 25 times a second. This tracking data could later be used by teams, the league and privately run companies to provide new insights and analysis about the game of basketball.</p>
@@ -78,35 +87,36 @@
 
 <p>Two different components go into all points scored. First is the expected points per shot, and then there points scored above/below average. For example, if our model says Steph Curry has a 40% chance of scoring a given three pointer, then his expected points on that shot is 1.2. If he makes the shot then his points above expected on that shot is 1.8, if he misses it then it is -1.2. We can average these components for all of a player's shots to get there average expected points and average points above expectation. We found those components for all players, and then plotted them on a graph. Going clockwise, the upper right quadrant is players who take easy shots and make them at a higher than expected rate, the bottom right is players that take hard shots and make them at a higher than expected rate, the bottom left is players who take tough shots and don't make them a lot, and then the upper left is players who take easy shots and don't make them a lot.</p>
 
-<script type='text/javascript' src='https://public.tableau.com/javascripts/api/viz_v1.js'></script><div class='tableauPlaceholder' style='width: 982px; height: 742px;'><noscript><a href='#'><img alt='Sheet 2 ' src='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;Ho&#47;HowPointsareMade&#47;Sheet2&#47;1_rss.png' style='border: none' /></a></noscript><object class='tableauViz' width='982' height='742' style='display:none;'><param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' /> <param name='site_root' value='' /><param name='name' value='HowPointsareMade&#47;Sheet2' /><param name='tabs' value='no' /><param name='toolbar' value='yes' /><param name='static_image' value='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;Ho&#47;HowPointsareMade&#47;Sheet2&#47;1.png' /> <param name='animate_transition' value='yes' /><param name='display_static_image' value='yes' /><param name='display_spinner' value='yes' /><param name='display_overlay' value='yes' /><param name='display_count' value='yes' /><param name='showVizHome' value='no' /><param name='showTabs' value='y' /><param name='bootstrapWhenNotified' value='true' /></object></div>
-
-
 <p>Of course, a player's expected points per shot is in turn affected by multiple things. There is the ability of the player himself to get good looks, there is the ability of his teammates to get him good looks, and then there is the ability of the defense to stop him from getting good looks. Running a massive ridge regression with the expected points for a shot as the dependent variable and then dummy variables for who is on the court (three possible types: one for the shooter, one for each player on offense but not shooting, and then one for each player on defense), we can get three coefficients for each player: their ability to get good shoots, their ability to help their teammates get good shots, and their ability to prevent opponents from getting good shots. Below we have plotted scatterplots reflecting a few of those stats.</p>
 
 <p>Ability to get good shots vs. Ability to get teammates good shots</p>
 
-<script type='text/javascript' src='https://public.tableau.com/javascripts/api/viz_v1.js'></script><div class='tableauPlaceholder' style='width: 982px; height: 742px;'><noscript><a href='#'><img alt='Sheet 1 ' src='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;Yo&#47;YouvsTeammatesEffects&#47;Sheet1&#47;1_rss.png' style='border: none' /></a></noscript><object class='tableauViz' width='982' height='742' style='display:none;'><param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' /> <param name='site_root' value='' /><param name='name' value='YouvsTeammatesEffects&#47;Sheet1' /><param name='tabs' value='no' /><param name='toolbar' value='yes' /><param name='static_image' value='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;Yo&#47;YouvsTeammatesEffects&#47;Sheet1&#47;1.png' /> <param name='animate_transition' value='yes' /><param name='display_static_image' value='yes' /><param name='display_spinner' value='yes' /><param name='display_overlay' value='yes' /><param name='display_count' value='yes' /><param name='showVizHome' value='no' /><param name='showTabs' value='y' /><param name='bootstrapWhenNotified' value='true' /></object></div>
-
 <p>Ability to get teammates good shots vs. Points Above Expected </p>
 
-<script type='text/javascript' src='https://public.tableau.com/javascripts/api/viz_v1.js'></script><div class='tableauPlaceholder' style='width: 982px; height: 742px;'><noscript><a href='#'><img alt='Sheet 4 ' src='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;Pa&#47;PassersvsShooters&#47;Sheet4&#47;1_rss.png' style='border: none' /></a></noscript><object class='tableauViz' width='982' height='742' style='display:none;'><param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' /> <param name='site_root' value='' /><param name='name' value='PassersvsShooters&#47;Sheet4' /><param name='tabs' value='no' /><param name='toolbar' value='yes' /><param name='static_image' value='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;Pa&#47;PassersvsShooters&#47;Sheet4&#47;1.png' /> <param name='animate_transition' value='yes' /><param name='display_static_image' value='yes' /><param name='display_spinner' value='yes' /><param name='display_overlay' value='yes' /><param name='display_count' value='yes' /><param name='showVizHome' value='no' /><param name='showTabs' value='y' /><param name='bootstrapWhenNotified' value='true' /></object></div>
-
 <p>Ability to get teammates good shots vs. Ability to prevent opponents from getting good shots</p>
-
-<script type='text/javascript' src='https://public.tableau.com/javascripts/api/viz_v1.js'></script><div class='tableauPlaceholder' style='width: 982px; height: 742px;'><noscript><a href='#'><img alt='Sheet 3 ' src='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;Of&#47;OffensevsDefense&#47;Sheet3&#47;1_rss.png' style='border: none' /></a></noscript><object class='tableauViz' width='982' height='742' style='display:none;'><param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' /> <param name='site_root' value='' /><param name='name' value='OffensevsDefense&#47;Sheet3' /><param name='tabs' value='no' /><param name='toolbar' value='yes' /><param name='static_image' value='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;Of&#47;OffensevsDefense&#47;Sheet3&#47;1.png' /> <param name='animate_transition' value='yes' /><param name='display_static_image' value='yes' /><param name='display_spinner' value='yes' /><param name='display_overlay' value='yes' /><param name='display_count' value='yes' /><param name='showVizHome' value='no' /><param name='showTabs' value='y' /><param name='bootstrapWhenNotified' value='true' /></object></div>
 
 <h3>
 <a id="support-or-contact" class="anchor" href="#support-or-contact" aria-hidden="true"><span class="octicon octicon-link"></span></a>Support or Contact</h3>
 
 <p>Having trouble with Pages? Check out our <a href="https://help.github.com/pages">documentation</a> or <a href="https://github.com/contact">contact support</a> and we’ll help you sort it out.</p>
+        </section>
 
-      <footer class="site-footer">
-        <span class="site-footer-owner"><a href="https://github.com/hwchase17/sportvu">SportVu Shot Analysis</a> is maintained by <a href="https://github.com/hwchase17">hwchase17</a>.</span>
+        <aside id="sidebar">
+          <a href="https://github.com/hwchase17/sportvu/zipball/master" class="button">
+            <small>Download</small>
+            .zip file
+          </a>
+          <a href="https://github.com/hwchase17/sportvu/tarball/master" class="button">
+            <small>Download</small>
+            .tar.gz file
+          </a>
 
-        <span class="site-footer-credits">This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the <a href="https://github.com/jasonlong/cayman-theme">Cayman theme</a> by <a href="https://twitter.com/jasonlong">Jason Long</a>.</span>
-      </footer>
+          <p class="repo-owner"><a href="https://github.com/hwchase17/sportvu"></a> is maintained by <a href="https://github.com/hwchase17">hwchase17</a>.</p>
 
-    </section>
+          <p>This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the Architect theme by <a href="https://twitter.com/jasonlong">Jason Long</a>.</p>
+        </aside>
+      </div>
+    </div>
 
   
   </body>
