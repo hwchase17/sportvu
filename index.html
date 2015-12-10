@@ -2,7 +2,7 @@
 <html lang="en-us">
   <head>
     <meta charset="UTF-8">
-    <title>SportVu Shot Analysis by hwchase17</title>
+    <title>NBA Shot Prediction and Analysis by hwchase17</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" href="stylesheets/normalize.css" media="screen">
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
@@ -11,7 +11,7 @@
   </head>
   <body>
     <section class="page-header">
-      <h1 class="project-name">SportVu Shot Analysis</h1>
+      <h1 class="project-name">NBA Shot Prediction and Analysis</h1>
       <h2 class="project-tagline">Raymond Cen, Harrison Chase, Carlos Pena-Lobel, Daniel Silberwasser</h2>
       <a href="https://github.com/hwchase17/sportvu" class="btn">View on GitHub</a>
       <a href="https://github.com/hwchase17/sportvu/zipball/master" class="btn">Download .zip</a>
@@ -73,8 +73,24 @@
 <h3>
 <a id="model" class="anchor" href="#model" aria-hidden="true"><span class="octicon octicon-link"></span></a>Model</h3>
 
+<p>We built several models with the data, experimenting with logistic regression with l1 and l2 penalties, the best of which predicts with 65% accuracy whether a given shot will go on, significantly better than any publicly available model available thus far. This model allows us to see how different players perform compared to an average player taking that shot. This model takes into account the distance from the basket, the distance from the nearest defender, the type of shot, the amount time the player held onto the ball before the shot, and a couple other key variables that were captured by the NBA play by play cameras. Below is a chart of the key variables as sorted by feature importance from the random forest model that we built.</p>
+
+<p><img src="https://raw.githubusercontent.com/hwchase17/sportvu/gh-pages/pictures/unknown-1.png" alt="Features"></p>
+
 <h3>
 <a id="analysis" class="anchor" href="#analysis" aria-hidden="true"><span class="octicon octicon-link"></span></a>Analysis</h3>
+
+<p>In the NBA, teams are allotted 24 seconds to shoot. The graph below shows that on average, teams use up more of the 24 seconds as the game progresses. The cause is unclear, but one can hypothesize that two factors combine to create this effect. First, teams take longer to find a good shot as the game progresses because teams are adjusting to their opponents strategies as the game progresses. Second, teams struggle to find good shots as the game progresses because they get tired. </p>
+
+<p><img src="https://raw.githubusercontent.com/hwchase17/sportvu/gh-pages/pictures/shotclock.png" alt="Shot Clock"></p>
+
+<p>In order to understand what factors might cause a team to take longer to shoot every quarter, we broke down the time by quarter and by the current score differential for the shooting team. We hypothesized that teams in the lead might try to kill time and teams falling behind might try to shoot more quickly. This effect reveals itself in the visualization, but only for data from the fourth quarter. This makes sense however, because teams feel more time pressure in the fourth quarter than any other. </p>
+
+<p><img src="https://raw.githubusercontent.com/hwchase17/sportvu/gh-pages/pictures/shotclockperquarter.png" alt="Shot by Quarter"></p>
+
+<p>This next graph shows that the average probability of a shot going in decreases by quarter, likely for the same reasons teams take longer to shoot as the game progresses: fatigue and adjusted strategies. </p>
+
+<p><img src="https://raw.githubusercontent.com/hwchase17/sportvu/gh-pages/pictures/shotprob.png" alt="Shot Prob over Game"></p>
 
 <p>Two different components go into all points scored. First is the expected points per shot, and then there points scored above/below average. For example, if our model says Steph Curry has a 40% chance of scoring a given three pointer, then his expected points on that shot is 1.2. If he makes the shot then his points above expected on that shot is 1.8, if he misses it then it is -1.2. We can average these components for all of a player's shots to get there average expected points and average points above expectation. We found those components for all players, and then plotted them on a graph. Going clockwise, the upper right quadrant is players who take easy shots and make them at a higher than expected rate, the bottom right is players that take hard shots and make them at a higher than expected rate, the bottom left is players who take tough shots and don't make them a lot, and then the upper left is players who take easy shots and don't make them a lot.</p>
 
@@ -92,7 +108,7 @@
 <p>Having trouble with Pages? Check out our <a href="https://help.github.com/pages">documentation</a> or <a href="https://github.com/contact">contact support</a> and we’ll help you sort it out.</p>
 
       <footer class="site-footer">
-        <span class="site-footer-owner"><a href="https://github.com/hwchase17/sportvu">SportVu Shot Analysis</a> is maintained by <a href="https://github.com/hwchase17">hwchase17</a>.</span>
+        <span class="site-footer-owner"><a href="https://github.com/hwchase17/sportvu">NBA Shot Prediction and Analysis</a> is maintained by <a href="https://github.com/hwchase17">hwchase17</a>.</span>
 
         <span class="site-footer-credits">This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the <a href="https://github.com/jasonlong/cayman-theme">Cayman theme</a> by <a href="https://twitter.com/jasonlong">Jason Long</a>.</span>
       </footer>
